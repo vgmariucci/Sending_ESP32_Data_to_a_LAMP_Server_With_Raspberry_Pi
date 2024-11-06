@@ -14,10 +14,14 @@ After setting up a LAMP server using a Raspberry Pi as shown in [this tutorial](
 
 3- Inclusion of a .env file
 
-4- Install **php**, **composer** and **vlucas/phpdotenv** library into the Raspberry Pi in order to use .env file info (if you already set up the LAMP serer into Raspberry, then just install **composer**)
+4- Install **php**, **composer**, and **vlucas/phpdotenv** library into the Raspberry Pi to use .env file info. 
+
+Note: If you've already set up the LAMP server into Raspberry, then install **composer** only.
 
 **commands**
 
-raspberrypi_user@your_raspberrypi_IP: ~ $ sudp apt install php
-raspberrypi_user@your_raspberrypi_IP: ~ $ sudp apt install composer
-raspberrypi_user@your_raspberrypi_IP: ~ $ sudp composer require vlucas/phpdotenv
+[raspberrypi_user@your_raspberrypi_IP: ~ $ sudo apt install php](copy)
+
+raspberrypi_user@your_raspberrypi_IP: ~ $ sudo apt install composer
+
+raspberrypi_user@your_raspberrypi_IP: ~ $ sudo composer require vlucas/phpdotenv
