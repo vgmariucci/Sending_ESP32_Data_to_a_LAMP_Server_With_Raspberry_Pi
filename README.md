@@ -20,7 +20,7 @@ Note: If you've already set up the LAMP server into Raspberry, then install **co
 
 **commands**
 
-[raspberrypi_user@your_raspberrypi_IP: ~ $ sudo apt install php](copy)
+raspberrypi_user@your_raspberrypi_IP: ~ $ sudo apt install php
 
 raspberrypi_user@your_raspberrypi_IP: ~ $ sudo apt install composer
 
