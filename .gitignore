@@ -1,2 +1,7 @@
 #.env files
 .env
+
+# Some especific directories
+mainScript/
+sql/
+www/
