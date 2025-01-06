@@ -28,7 +28,7 @@ raspberrypi_user@your_raspberrypi_IP: ~ $ sudo apt install composer
 
 raspberrypi_user@your_raspberrypi_IP: ~ $ sudo composer require vlucas/phpdotenv
 
-# ESP32 Circuit Setup Used in this Project
+## ESP32 Circuit Setup Used in this Project
 
 The circuit using ESP32 for this project is composed by the follwoing components:
 
