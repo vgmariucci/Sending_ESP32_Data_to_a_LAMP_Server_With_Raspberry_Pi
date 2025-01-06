@@ -10,11 +10,11 @@ After setting up a LAMP server using a Raspberry Pi as shown in [this tutorial](
 
 ## Requirements and Modifications to test this Repo
 
-1- ESP32 WROOM developer board (used DOIT ESP32 DEVKIT V1)
+1- ESP32 WROOM developer board (DOIT ESP32 DEVKIT V1)
 
-2- Raspberry Pi
+2- Raspberry Pi (3 B+)
 
-3- Inclusion of a .env file
+3- Inclusion of a .env file to store sensible info used to grant access to applications.
 
 4- Install **php**, **composer**, and **vlucas/phpdotenv** library into the Raspberry Pi to use .env file info. 
 
@@ -27,3 +27,12 @@ raspberrypi_user@your_raspberrypi_IP: ~ $ sudo apt install php
 raspberrypi_user@your_raspberrypi_IP: ~ $ sudo apt install composer
 
 raspberrypi_user@your_raspberrypi_IP: ~ $ sudo composer require vlucas/phpdotenv
+
+# ESP32 Circuit Setup Used in this Project
+
+The circuit using ESP32 for this project is composed by the follwoing components:
+
+- DHT22
+- SD Card Module
+- Oled Display SSD1306
+- Real Time Clock (RTC DS3231)
