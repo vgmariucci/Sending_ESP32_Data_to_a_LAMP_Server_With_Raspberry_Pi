@@ -43,7 +43,7 @@ The complete circuit is composed by following components and modules:
 
 The circuit setup is shown below:
 
-![circuit_diagram](/esp32_raspberrypi_lamp_server/images/electronic_setup.png)
+![circuit_diagram](images/electronic_setup.png)
 
 ### Circuit Functionality
 
