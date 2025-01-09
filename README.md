@@ -30,9 +30,21 @@ raspberrypi_user@your_raspberrypi_IP: ~ $ sudo composer require vlucas/phpdotenv
 
 ## ESP32 Circuit Setup Used in this Project
 
-The circuit using ESP32 for this project is composed by the follwoing components:
+The complete circuit is composed by following components and modules:
 
+- DOIT ESP32 DEVKIT V1
 - DHT22
 - SD Card Module
 - Oled Display SSD1306
-- Real Time Clock (RTC DS3231)
+- Real Time Clock Module (RTC DS3231)
+- Two Push Buttons
+- Two 10 kohm resistors
+
+
+The circuit setup is shown below:
+
+![circuit_diagram](/esp32_raspberrypi_lamp_server/images/electronic_setup.png)
+
+### Circuit Functionality
+
+This circuit monitors the DHT22 sensor readings at intervals, adjusted directly in the firmware (this could be improved to be adjustable in the future, using a menu approach just to set the main parameters of the system). The DHT22 readings are logged into an SD Card accompaining some other parameters like the RTC date and time, localization of installation, etc. The same data logged into the SD Card is sent using the HTTP POST method to the LAMP server running in the Raspberry Pi, which saves the data into a MariaDB/MySQL database.
