@@ -77,7 +77,7 @@ You will see a new database with the name you gave to it:
 
 ![phpmyadmin_esp_data_database](images/phpmyadmin_esp_data_database.png)
 
-Now, we need to create a table to store all the ESP32 data in an structured manner(columns). To do so, we can click on the tab **SQL**:
+Now, we need to create a table to store all the ESP32 data in a structured manner(columns). To do so, we can click on the tab **SQL**:
 
 ![phpmyadmin_sql](images/phpmyadmin_sql.png)
 
