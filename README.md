@@ -51,7 +51,7 @@ This circuit monitors the DHT22 sensor readings at intervals, adjusted directly 
 
 The project was developed using **Arduino IDE 2.3.4** and all sketches are found in **arduino_files** directory.
 
-## Acessing the phpMyAdmin to Create the Database to Store the Data from ESP32
+## Accessing the phpMyAdmin to Create the Database to Store the Data from ESP32
 
 Once we have the LAMP server installed and running in Raspberry Pi, we can access the server address by typing in the browser the following:
 
