@@ -55,7 +55,7 @@ The project was developed using **Arduino IDE 2.3.4** and all sketches are found
 
 Once we have the LAMP server installed and running in Raspberry Pi, we can access the server address by typing in the browser the following:
 
-**http://you_raspbery_IP_address/phpmyadmin**
+**http://you_raspberypi_IP_address/phpmyadmin**
 
 When you press Enter, the access page will be shown:
 
