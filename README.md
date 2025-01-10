@@ -48,3 +48,59 @@ The circuit setup is shown below:
 ### Circuit Functionality
 
 This circuit monitors the DHT22 sensor readings at intervals, adjusted directly in the firmware (this could be improved to be adjustable in the future, using a menu approach just to set the main parameters of the system). The DHT22 readings are logged into an SD Card accompaining some other parameters like the RTC date and time, localization of installation, etc. The same data logged into the SD Card is sent using the HTTP POST method to the LAMP server running in the Raspberry Pi, which saves the data into a MariaDB/MySQL database.
+
+The project was developed using **Arduino IDE 2.3.4** and all sketches are found in **arduino_files** directory.
+
+## Acessing the phpMyAdmin to Create the Database to Store the Data from ESP32
+
+Once we have the LAMP server installed and running in Raspberry Pi, we can access the server address by typing in the browser the following:
+
+**http://you_raspbery_IP_address/phpmyadmin**
+
+When you press Enter, the access page will be shown:
+
+![phpmyadmin_access](images/phpmyadmin_access.png)
+
+To get access, you must fill out the field **Username** (generally **root**) and the **Password** you set during the LAMP server installation. If everything goes nicely you will see the following page:
+
+![phpmyadmin_first_page](images/phpmyadmin_first_page.png)
+
+Click on **New** to create a new database:
+
+![phpmyadmin_new_database](images/phpmyadmin_new_database.png)
+
+Choose a database name and then click in **Create**:
+
+![phpmyadmin_database_name](images/phpmyadmin_database_name.png)
+
+You will see a new database with the name you gave to it:
+
+![phpmyadmin_esp_data_database](images/phpmyadmin_esp_data_database.png)
+
+Now, we need to create a table to store all the ESP32 data in an structured manner(columns). To do so, we can click on the tab **SQL**:
+
+![phpmyadmin_sql](images/phpmyadmin_sql.png)
+
+Then, type in or just copy and paste the following SQL commands to create our desired table and click **Go**:
+
+CREATE TABLE sensor_readings (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    reading_time TIMESTAMP,
+    location VARCHAR(30) NOT NULL,
+    temperature VARCHAR(10),
+    humidity VARCHAR(10),
+    wifi_status VARCHAR(10)
+)
+
+![phpmyadmin_create_table](images/phpmyadmin_create_table.png)
+
+You'll see the message below and the newly created table:
+
+![phpmyadmin_table_created](images/phpmyadmin_table_created.png)
+
+If we click on the table, we can see its columns, but of course, the table is empty because no data has been inputted or sent yet.
+
+![phpmyadmin_empty_table](images/phpmyadmin_table_created.png)
+
+## Creating The Files Responsible to Deal With The Data Sent By The ESP32
+

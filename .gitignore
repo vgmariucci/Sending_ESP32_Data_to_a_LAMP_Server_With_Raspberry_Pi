@@ -2,7 +2,8 @@
 .env
 
 # Some especific directories
-mainScript/
+arduino_files/
 sql/
 www/
-/fritzing_files
+fritzing_files/
+
