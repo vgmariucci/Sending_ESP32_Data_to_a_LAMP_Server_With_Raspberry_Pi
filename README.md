@@ -37,8 +37,8 @@ The complete circuit is composed by following components and modules:
 - SD Card Module
 - Oled Display SSD1306
 - Real Time Clock Module (RTC DS3231)
-- Two Push Buttons
-- Two 10 kohm resistors
+- 2 Push Buttons
+- 3 10 kohm resistors
 
 
 The circuit setup is shown below:
