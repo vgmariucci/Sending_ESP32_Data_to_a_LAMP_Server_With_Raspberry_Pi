@@ -102,7 +102,7 @@ You'll see the message below and the newly created table:
 
 If we click on the table, we can see its columns, but of course, the table is empty because no data has been inputted or sent yet.
 
-![phpmyadmin_empty_table](images/phpmyadmin_table_created.png)
+![phpmyadmin_empty_table](images/phpmyadmin_empty_table.png)
 
 ## Creating The Files Responsible to Deal With The Data Sent By The ESP32
 
