@@ -83,6 +83,7 @@ Now, we need to create a table to store all the ESP32 data in a structured manne
 
 Then, type in or just copy and paste the following SQL commands to create our desired table and click **Go**:
 
+[verbose]SQL(
 CREATE TABLE sensor_readings (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     reading_time TIMESTAMP,
@@ -90,6 +91,7 @@ CREATE TABLE sensor_readings (
     temperature VARCHAR(10),
     humidity VARCHAR(10),
     wifi_status VARCHAR(10)
+    )
 )
 
 ![phpmyadmin_create_table](images/phpmyadmin_create_table.png)
