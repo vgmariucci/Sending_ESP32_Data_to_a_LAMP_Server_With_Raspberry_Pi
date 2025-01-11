@@ -154,11 +154,11 @@ Now, we will create the files on the server side, which will be responsible for 
 
 ![codepen_api_key_example](images/api_key_example.png)
 
-After you have finished the definitions of the evironment variables you must save the **.env** file by pressing **Ctrl+X** and then **Y(es)**
+After you have finished the definitions of the environment variables you must save the **.env** file by pressing **Ctrl+X** and then **Y**
 
-- Now we will use the same **php** files from the [Random Nerd Tutorials](https://randomnerdtutorials.com/esp32-esp8266-raspberry-pi-lamp-server/), but with the adjustments to use the **.env** file and other parameters for this project.
+- Now we will use the same **php** files from the [Random Nerd Tutorials](https://randomnerdtutorials.com/esp32-esp8266-raspberry-pi-lamp-server/) but with the adjustments to using the **.env** file and other parameters for this project.
 
-    In the same directory where our **.env** file is saved (in my case is pi@raspberrypi:/var/www/html $), we will create the **php** files. The complete files you can find in the **www** folder in this repo.
+    In the same directory where our **.env** file is saved (in my case pi@raspberrypi:/var/www/html $), we will create the **php** files. The complete files you can find in the **www** folder in this repo.
 
     - Creating the file **esp_data.php**:
 
@@ -168,7 +168,7 @@ After you have finished the definitions of the evironment variables you must sav
 
         ![esp_data_php_nano](images/esp_data_php_nano.png)
 
-        Again type **Ctrl+X** and **Y(es)** to save the file.
+        Again type **Ctrl+X** and **Y** to save the file.
 
     - Creating the file: **post_esp_data.php**
 
