@@ -203,6 +203,14 @@ If you type in the browser **http://you_raspberypi_IP_address/esp_data.php** the
 
 ![esp_data_php_result](images/esp_data_php_result.png)
 
+## Results for Other PHP Scripts
+
+I've also included in this repo the **esp_chart.php** and **esp_dashboard.php** files built with the help of [Random Nerd Tutorials](https://randomnerdtutorials.com/esp32-esp8266-raspberry-pi-lamp-server/). The results are shown in the images below:
+
+![esp_chart_php_result](images/esp_chart_php_result.png)
+
+![esp_dashboard_php_result](images/esp_dashboard_php_result.png)
+
 
 
 
