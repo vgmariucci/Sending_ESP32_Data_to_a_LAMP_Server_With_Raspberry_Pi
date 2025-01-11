@@ -194,6 +194,13 @@ After compiling and burning the mainScript.ino into the ESP32, it will start to 
 
 ![arduino_serial_monitor](images/arduino_serial_monitor.png)
 
+If you access the **phpmyadmin** and if everything is ok for the PHP and .env files running in the LAMP server with the Raspberry Pi, you will be able to check the database table "sensor_readings" being filled up with the ESP32 sent data.
 
     
+![phpmyadmin_table_being_filled](images/phpmyadmin_table_being_filled.png)
+
+If you type in the browser **http://you_raspberypi_IP_address/esp_data.php** the result below must be shown also:
+
+![esp_data_php_result](images/esp_data_php_result.png)
+
 
