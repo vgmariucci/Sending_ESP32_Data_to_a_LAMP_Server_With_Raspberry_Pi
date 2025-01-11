@@ -100,29 +100,29 @@ You'll see the message below and the newly created table:
 
 ![phpmyadmin_table_created](images/phpmyadmin_table_created.png)
 
-If we click on the table, we can see its columns, but of course, the table is empty because no data has been inputted or sent yet.
+If we click on the table, we can see its columns. The table is empty because no data has been inputted or sent yet.
 
 ![phpmyadmin_empty_table](images/phpmyadmin_empty_table.png)
 
 ## Creating The Files Responsible to Deal With The Data Sent By The ESP32
 
-Now we will create the files in the server side, which will be responsible to receive the data comming from ESP32 via HTTP POST method and save it into the database. To do this, open the terminal and foollow the steps below.
+Now, we will create the files on the server side, which will be responsible for receiving the data coming from ESP32 via the HTTP POST method and saving it into the database. To do this, open the terminal and follow the steps below.
 
-- Connet to the Raspberry Pi through ssh:
+- Connect to the Raspberry Pi through ssh:
 
     **command** 
     
     ssh raspberrypi_user@your_raspberrypi_IP
 
-    In my case, the **raspberrypi_user = pi** and **your_raspberrypi_IP = raspberrypi** or you may replace by the actual IP number address like 192.168.*.* and so on.
+    In my case, the **raspberrypi_user = pi** and **your_raspberrypi_IP = raspberrypi** or you may replace with the actual IP number address like 192.168.*.** and so on.
 
-- Go to the followin directory:
+- Go to the following directory:
 
     **command**
 
     pi@raspberrypi:~ $ cd /var/www/html
 
-- Now we will create the **.env** file to store the credentials and other sensible information of the sistem using **nano** text enviorement:
+- Create the **.env** file to store the credentials and other sensible information about the system using **nano** text environment:
 
     **command**
 
@@ -132,16 +132,17 @@ Now we will create the files in the server side, which will be responsible to re
 
     ![gnu_nano_editor](images/gnu_nano_editor.png)
 
-    There you will create the enviroment variables we will call in *php* scripts
-    which will connect with the database and will hold the API_KEY we will generate to give some kind of security level between data transfer between the ESP32 and the LAMP server running on the Raspberry PI.
+    Create the environment variables we will call in *php* scripts
+    which will connect with the database and store the API_KEY we will generate to have some security level between the ESP32 and the LAMP server running on the Raspberry PI.
 
     So, in the .env file you will enter the following text lines:
 
     ~~~~
         # MySQL Database Credentials hosted into Raspberry Pi
-        RASP_DATABASE_NAME = "your_database_name" 
+        RASP_DATABASE_NAME = "your_database_name"
         RASP_DATABASE_USER_NAME = "your_database_user_name"
-        RASP_DATABASE_PASSWORD = "your_database_password
+        RASP_DATABASE_PASSWORD = "your_database_password"
+        RASP_DATABASE_TABLE_NAME = "your_database_table_name"
         RASP_API_KEY = "your_api_key"
     ~~~~
 
