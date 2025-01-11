@@ -185,7 +185,14 @@ After you have finished the definitions of the environment variables you must sa
         pi@raspberrypi:/var/www/html $ sudo nano esp_insert_and_get_data_into_from_database.php
 
         Repeat the proccess as done with the **esp_data.php**
+    
+## Testing the Application
 
+Now, if you've already made a **git clone** or downloaded this repo, you must open the **mainScript.ino** file inside the folder with the same name containing all the subroutines **.ino** files and the file **secrets.h**, which is serving here like our **.env** file to store sensible information.
+
+After compiling and burning the mainScript.ino into the ESP32, it will start to print through the serial communication (we can see the messages in Serial Monitor) the HTTP POST request and other relevant informations for debugging the projetc (as shown in the print below):
+
+![arduino_serial_monitor](images/arduino_serial_monitor.png.png)
 
 
     
