@@ -148,9 +148,9 @@ Now, we will create the files on the server side, which will be responsible for 
 
     ![nano_dot_env](images/nano_dot_env.png)
 
-    In this project I used for **RASP_DATABASE_NAME = esp_data** and **RASP_DATABASE_USER_NAME = root**, but if you've set different names for each variable you must use yours.
+    In this project, I used **RASP_DATABASE_NAME = esp_data**, **RASP_DATABASE_USER_NAME = root**, and **RASP_DATABASE_TABLE_NAME = sensor_readings***, but if you've set different names for each variable you must use yours.
 
-- To generate the API_KEY for this project, we can access [codepen](https://codepen.io/corenominal/pen/rxOmMJ) and just click in **Generate API Key**. Then copy and paste it in the **RASP_API_KEY** enviroment variable in **.evn** opened at **nano** editor.
+- To generate the API_KEY for this project, we can access [codepen](https://codepen.io/corenominal/pen/rxOmMJ) and just click on **Generate API Key**. Then copy and paste it in the **RASP_API_KEY** environment variable in **.evn** opened at **nano** editor.
 
 ![codepen_api_key_example](images/api_key_example.png)
 
