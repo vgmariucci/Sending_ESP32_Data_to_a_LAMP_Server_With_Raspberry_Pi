@@ -149,7 +149,7 @@ Now we will create the files in the server side, which will be responsible to re
 
     In this project I used for **RASP_DATABASE_NAME = esp_data** and **RASP_DATABASE_USER_NAME = root**, but if you've set different names for each variable you must use yours.
 
-- To generate the API_KEY for this project, we can access (codepen)[https://codepen.io/corenominal/pen/rxOmMJ] and just click in **Generate API Key**. Then copy and paste it in the **RASP_API_KEY** enviroment variable in **.evn** opened at **nano** editor.
+- To generate the API_KEY for this project, we can access [codepen](https://codepen.io/corenominal/pen/rxOmMJ) and just click in **Generate API Key**. Then copy and paste it in the **RASP_API_KEY** enviroment variable in **.evn** opened at **nano** editor.
 
 ![codepen_api_key_example](images/api_key_example.png)
 
