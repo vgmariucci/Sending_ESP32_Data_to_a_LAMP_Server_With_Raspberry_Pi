@@ -192,7 +192,7 @@ Now, if you've already made a **git clone** or downloaded this repo, you must op
 
 After compiling and burning the mainScript.ino into the ESP32, it will start to print through the serial communication (we can see the messages in Serial Monitor) the HTTP POST request and other relevant informations for debugging the projetc (as shown in the print below):
 
-![arduino_serial_monitor](images/arduino_serial_monitor.png.png)
+![arduino_serial_monitor](images/arduino_serial_monitor.png)
 
 
     
