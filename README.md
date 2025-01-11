@@ -182,7 +182,7 @@ After you have finished the definitions of the environment variables you must sa
 
         **commands**
 
-        pi@raspberrypi:/var/www/html $ sudo nano sp_insert_and_get_data_into_from_database.php
+        pi@raspberrypi:/var/www/html $ sudo nano esp_insert_and_get_data_into_from_database.php
 
         Repeat the proccess as done with the **esp_data.php**
 
