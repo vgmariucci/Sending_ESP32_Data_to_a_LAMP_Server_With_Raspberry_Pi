@@ -204,3 +204,5 @@ If you type in the browser **http://you_raspberypi_IP_address/esp_data.php** the
 ![esp_data_php_result](images/esp_data_php_result.png)
 
 
+
+
