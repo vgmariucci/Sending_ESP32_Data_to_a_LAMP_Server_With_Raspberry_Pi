@@ -177,7 +177,13 @@ After you have finished the definitions of the evironment variables you must sav
 
         Repeat the proccess as done with the **esp_data.php**
 
+    - Creating the file: **esp_insert_and_get_data_into_from_database.php**
 
+        **commands**
+
+        pi@raspberrypi:/var/www/html $ sudo nano sp_insert_and_get_data_into_from_database.php
+
+        Repeat the proccess as done with the **esp_data.php**
 
 
 
