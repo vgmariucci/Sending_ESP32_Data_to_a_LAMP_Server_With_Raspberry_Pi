@@ -106,3 +106,80 @@ If we click on the table, we can see its columns, but of course, the table is em
 
 ## Creating The Files Responsible to Deal With The Data Sent By The ESP32
 
+Now we will create the files in the server side, which will be responsible to receive the data comming from ESP32 via HTTP POST method and save it into the database. To do this, open the terminal and foollow the steps below.
+
+- Connet to the Raspberry Pi through ssh:
+
+    **command** 
+    
+    ssh raspberrypi_user@your_raspberrypi_IP
+
+    In my case, the **raspberrypi_user = pi** and **your_raspberrypi_IP = raspberrypi** or you may replace by the actual IP number address like 192.168.*.* and so on.
+
+- Go to the followin directory:
+
+    **command**
+
+    pi@raspberrypi:~ $ cd /var/www/html
+
+- Now we will create the **.env** file to store the credentials and other sensible information of the sistem using **nano** text enviorement:
+
+    **command**
+
+    pi@raspberrypi:/var/www/html $ sudo nano .env
+
+    You will see the screen below:
+
+    ![gnu_nano_editor](images/gnu_nano_editor.png)
+
+    There you will create the enviroment variables we will call in *php* scripts
+    which will connect with the database and will hold the API_KEY we will generate to give some kind of security level between data transfer between the ESP32 and the LAMP server running on the Raspberry PI.
+
+    So, in the .env file you will enter the following text lines:
+
+    ~~~~
+        # MySQL Database Credentials hosted into Raspberry Pi
+        RASP_DATABASE_NAME = "your_database_name" 
+        RASP_DATABASE_USER_NAME = "your_database_user_name"
+        RASP_DATABASE_PASSWORD = "your_database_password
+        RASP_API_KEY = "your_api_key"
+    ~~~~
+
+    ![nano_dot_env](images/nano_dot_env.png)
+
+    In this project I used for **RASP_DATABASE_NAME = esp_data** and **RASP_DATABASE_USER_NAME = root**, but if you've set different names for each variable you must use yours.
+
+- To generate the API_KEY for this project, we can access (codepen)[https://codepen.io/corenominal/pen/rxOmMJ] and just click in **Generate API Key**. Then copy and paste it in the **RASP_API_KEY** enviroment variable in **.evn** opened at **nano** editor.
+
+![codepen_api_key_example](images/api_key_example.png)
+
+After you have finished the definitions of the evironment variables you must save the **.env** file by pressing **Ctrl+X** and then **Y(es)**
+
+- Now we will use the same **php** files from the [Random Nerd Tutorials](https://randomnerdtutorials.com/esp32-esp8266-raspberry-pi-lamp-server/), but with the adjustments to use the **.env** file and other parameters for this project.
+
+    In the same directory where our **.env** file is saved (in my case is pi@raspberrypi:/var/www/html $), we will create the **php** files. The complete files you can find in the **www** folder in this repo.
+
+    - Creating the file **esp_data.php**:
+
+        **command**
+
+        pi@raspberrypi:/var/www/html $ sudo nano esp_data.php
+
+        ![esp_data_php_nano](images/esp_data_php_nano.png)
+
+        Again type **Ctrl+X** and **Y(es)** to save the file.
+
+    - Creating the file: **post_esp_data.php**
+
+        **command**
+
+        pi@raspberrypi:/var/www/html $ sudo nano post_esp_data.php
+
+        Repeat the proccess as done with the **esp_data.php**
+
+
+
+
+
+    
+
