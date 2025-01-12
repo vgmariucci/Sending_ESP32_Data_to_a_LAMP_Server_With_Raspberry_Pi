@@ -84,7 +84,6 @@ DHT dht(DHTPIN, DHTTYPE);
 
 void setup(){
 
-  
   pinMode(led, OUTPUT);                                         // Set the ledPin as an output of signal pin
   
   pinMode(displayBtn, INPUT);                                   // Set the displayBtn as an input of signal
@@ -116,7 +115,7 @@ void loop() {
         setDateTimeDS3231RTCUsingNTPClientFlag = 1;              // Set the flag !setDateTimeDS3231RTCUsingNTPClientFlag to prevent enter in sync mode again.
     }
   }
-
+  // Check if it is time to log the data into the SD Card and if connected to the Internet, send the data to the LAMP server via HTTP POST request
   if (millis() - previousMillisForDataLogs >= intervalBetweenDataLogs) {
     
     previousMillisForDataLogs = millis();
@@ -134,6 +133,7 @@ void loop() {
     }
 
   }
+  // Refresh the data presented in the OLED display in intervals of 5 seconds
   if (!displayBtnCounter && (millis() - previousMillisForOledReresh >= intervalBetweenOledRefresh)) {
       previousMillisForOledReresh = millis();
       readTemperatureAndHumidityFromDHT22();

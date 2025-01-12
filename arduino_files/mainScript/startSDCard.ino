@@ -92,22 +92,22 @@ void startSDCard(){
  
    writeFile(
               SD, 
-              "/data.txt",                           // Put the filename to be created in this row
+              "/data.txt",                                             // Put the filename to be created in this row
               
               // Additional information considered relevant to the customer
               
-              "ESP DATA IoT\r\n"                                    // The responsible for monitoring the below parameters
-              "CUSTOMER: PUT_HERE_THE_CUSTOMER_NAME\r\n"           // Customer's name
-              "SECTOR: PUT_HERE_THE_SECTOR_NAME\r\n"               // Some specific sector's name
-              "LOCAL: PUT_HERE_THE_LOCAL_NAME\r\n\r\n"           // The local name or geolocation reference
+              "ESP DATA IoT\r\n"                                        // The responsible for monitoring the below parameters
+              "CUSTOMER: PUT_HERE_THE_CUSTOMER_NAME\r\n"                // Customer's name
+              "SECTOR: PUT_HERE_THE_SECTOR_NAME\r\n"                    // Some specific sector's name
+              "LOCAL: PUT_HERE_THE_LOCAL_NAME\r\n\r\n"                  // The local name or geolocation reference
               
               // The set of paremeters to be registered into rows of data.txt file
               
-              "timestamp;"                            // The timestamp regarding the measured values 
-              "location;"                            // The local name or reference place or idealy the customer's name or identificaion 
-              "temperature;"                         // The DHT22 temperature reading
-              "humidity;"                             // The DHT22 humidity reading
-              "wifi_status\r\n"                       // The WiFi status (connected 1 or disconnected 0)
+              "timestamp;"                                               // The timestamp regarding the measured values 
+              "location;"                                                // The local name or reference place or idealy the customer's name or identificaion 
+              "temperature;"                                             // The DHT22 temperature reading
+              "humidity;"                                                // The DHT22 humidity reading
+              "wifi_status\r\n"                                          // The WiFi status (connected 1 or disconnected 0)
               );
   }
   else {

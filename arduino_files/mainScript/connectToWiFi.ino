@@ -16,7 +16,7 @@ void connectToWifi() {
 
   if (WiFi.status() != WL_CONNECTED && WIFI_CONNECTION_CHECK_TIMEOUT < 5){
 
-    // clear display
+  // clear display
   display.clearDisplay(); 
   // display temperature
   display.setTextSize(1);
