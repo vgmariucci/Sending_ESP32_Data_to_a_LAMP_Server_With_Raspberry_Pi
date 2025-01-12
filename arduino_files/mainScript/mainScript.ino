@@ -33,8 +33,10 @@
 #include "Secrets.h"        // Hold Authorization Credentias that enables the ESP32 HTTP Post to the MySQL database hosted in a GCP Virtual Machine
 
 //************************** GLOBAL VARIABLES  *****************************
-unsigned long PreviousMillis = 0;
-const long intervalBetweenDataLogs = 60000; // Time interval for each SD Card datalog and HTTP POST to the Raspberry Pi LAMP server
+unsigned long previousMillisForDataLogs = 0;
+unsigned long previousMillisForOledReresh = 0;
+const long intervalBetweenDataLogs = 60000;   // Time interval for each SD Card datalog and HTTP POST to the Raspberry Pi LAMP server
+const long intervalBetweenOledRefresh = 5000; // Time interval for data refresh for OLED display and Serial Monitor
 
 
 // Customer identification
@@ -117,18 +119,16 @@ void loop() {
     }
   }
 
-  // Após um intervalo X em segundos (intervalo = 5 segundos)
-  if (!displayBtnCounter && (millis() - PreviousMillis >= intervalo)) {
-
-    // Registra o último valor do contador millis logo após entrar nessa rotina
-    PreviousMillis = millis();
-    readTemperatureAndHumidityFromDHT22();
-    printSerialData();
-    displayOledData();
+  if (!displayBtnCounter && (millis() - previousMillisForDataLogs >= intervalBetweenDataLogs)) {
+    previousMillisForDataLogs = millis();
     logSDCard();
+  }
+  if (!displayBtnCounter && (millis() - previousMillisForOledReresh >= previousMillisForOledReresh)) {
+    previousMillisForOledReresh = millis();
+    readTemperatureAndHumidityFromDHT22();
+    displayOledData();
     oledState++;
     if(oledState > 1) oledState = 0;
   }
-  else displayOledData();
   
 }
