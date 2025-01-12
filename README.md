@@ -6,13 +6,13 @@ This repo was an experiment based on the awesome material presented by [Random N
 
 After setting up a LAMP server using a Raspberry Pi as shown in [this tutorial](https://randomnerdtutorials.com/raspberry-pi-apache-mysql-php-lamp-server/) and also reviewed [here](https://github.com/vgmariucci/Setting_Up_LAMP_Server_With_Raspberry_Pi), we can build some **php** scripts/APIs to receive data from an ESP32 using **HTTP** protocol and **POST** method
 
-## Requirements and Modifications to test this Repo
+## Requirements and Modifications to Test This Repo
 
 1- ESP32 WROOM developer board (DOIT ESP32 DEVKIT V1)
 
 2- Raspberry Pi (3 B+)
 
-3- Inclusion of a .env file to store sensible info used to grant access to applications.
+3- A .env file should be included on the LAMP server side to store sensitive information used to grant application access.
 
 4- Install **php**, **composer**, and **vlucas/phpdotenv** library into the Raspberry Pi to use .env file info. 
 
