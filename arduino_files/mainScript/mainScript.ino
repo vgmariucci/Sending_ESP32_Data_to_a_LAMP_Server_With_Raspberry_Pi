@@ -48,12 +48,10 @@ float humidity;
 
 uint8_t oledState = 0;  // Variable do store the Oled counter
 
-uint8_t displayBtnCounter = 0;  // Variable do store the Oled button counter
+uint8_t displayBtnCounter = 0;   // Variable to store how many times the display button was pressed
 bool displayBtnStatus = 0; // Variable to store the button status which increments the Oled counter
-bool f_displayBtn = 0;     // Variable flag for debouncing the button which increments the Oled counter
 
 bool wifiBtnStatus = 0;    // Variable to store the button status which starts the Wifi connection setup
-bool f_wifiBtn = 0;        // Variable flag for debouncing the button which starts the WiFi connection setup
 bool AP_mode_status = 0;   // Variable to flag if the ESP32 is in the Access Point (AP) mode
 bool shouldSaveConfig = false; // Variable to flag if it was saved the WiFi setup
 unsigned int WIFI_CONNECTION_CHECK_TIMEOUT = 0;
@@ -119,16 +117,29 @@ void loop() {
     }
   }
 
-  if (!displayBtnCounter && (millis() - previousMillisForDataLogs >= intervalBetweenDataLogs)) {
+  if (millis() - previousMillisForDataLogs >= intervalBetweenDataLogs) {
+    
     previousMillisForDataLogs = millis();
+
+    reading_time = getDS3231DateTime();
     logSDCard();
+
+    if(WiFi.status() == WL_CONNECTED){
+      sendDataViaHTTPPost();
+      wifiStatus = 1;
+    }
+    else{
+    Serial.println("Failed to send data to server: Wifi Disconnected");
+    wifiStatus = 0;
+    }
+
   }
-  if (!displayBtnCounter && (millis() - previousMillisForOledReresh >= previousMillisForOledReresh)) {
-    previousMillisForOledReresh = millis();
-    readTemperatureAndHumidityFromDHT22();
-    displayOledData();
-    oledState++;
-    if(oledState > 1) oledState = 0;
+  if (!displayBtnCounter && (millis() - previousMillisForOledReresh >= intervalBetweenOledRefresh)) {
+      previousMillisForOledReresh = millis();
+      readTemperatureAndHumidityFromDHT22();
+      oledState++;
+      if(oledState > 2) oledState = 0;
   }
+  else displayOledData();
   
 }

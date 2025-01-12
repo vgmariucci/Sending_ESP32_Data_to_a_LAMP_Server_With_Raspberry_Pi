@@ -1,49 +1,37 @@
-void refreshKeyboardReadings() {
+// Constants
+const unsigned long debounceDelay = 100; // Debounce delay in milliseconds
 
+// Variables for debounce handling
+unsigned long lastDisplayBtnPressTime = 0;
+unsigned long lastWifiBtnPressTime = 0;
+
+void refreshKeyboardReadings() {
+  // Read button states
   displayBtnStatus = digitalRead(displayBtn);
   wifiBtnStatus = digitalRead(wifiBtn);
 
-  if (!displayBtnStatus && !f_displayBtn) {
+  // Handle display button
+  if (!displayBtnStatus && millis() - lastDisplayBtnPressTime > debounceDelay) {
+    lastDisplayBtnPressTime = millis(); // Update the last press time
 
-    f_displayBtn = 1;
+    oledState++;
+    displayBtnCounter++;
+    digitalWrite(led, 1);
 
-    digitalWrite(led, f_displayBtn);
-
-    if (!displayBtnStatus && f_displayBtn) {
-      
-        oledState++;
-        displayBtnCounter++;
-        digitalWrite(led, 1);
-
-        if(oledState > 2){
-          oledState = 0;
-        }
-
-        if(displayBtnCounter > 3){
-            displayBtnCounter = 0;
-            digitalWrite(led, 0);
-        } 
+    if (oledState > 2) {
+      oledState = 0;
+      displayBtnCounter = 0;
+      digitalWrite(led, 0);
     }
-  } 
-  else {
-      f_displayBtn = 0;
   }
 
-  if (!wifiBtnStatus && !f_wifiBtn) {
+  // Handle WiFi button
+  if (!wifiBtnStatus && millis() - lastWifiBtnPressTime > debounceDelay) {
+    lastWifiBtnPressTime = millis(); // Update the last press time
 
-    f_wifiBtn = 1;
+    digitalWrite(led, 1); // Example LED feedback
 
-    digitalWrite(led, f_wifiBtn);
-
-    if (!wifiBtnStatus && f_wifiBtn) {
-      
-        //Enalbes the device to AP mode to set the WiFi connection
-        AP_mode_status = 1;
-
-        } 
-    } 
-  else {
-      f_wifiBtn = 0;
+    // Enables the device to AP mode to set the WiFi connection
+    AP_mode_status = 1;
   }
-
 }

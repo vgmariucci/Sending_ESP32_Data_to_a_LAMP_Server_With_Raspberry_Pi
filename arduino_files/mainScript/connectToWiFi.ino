@@ -6,9 +6,9 @@ void connectToWifi() {
   display.clearDisplay(); 
   // display temperature
   display.setTextSize(1);
-  display.setCursor(0,0);
+  display.setCursor(10,10);
   display.print("Trying to connect");
-  display.setCursor(0,20);
+  display.setCursor(10,30);
   display.print("to the Internet...");
   display.display();
 
@@ -20,10 +20,10 @@ void connectToWifi() {
   display.clearDisplay(); 
   // display temperature
   display.setTextSize(1);
-  display.setCursor(0,0);
-  display.print("It was not possible to");
-  display.setCursor(0,20);
-  display.print("connect to the Internet");
+  display.setCursor(10,10);
+  display.print("Can't connect");
+  display.setCursor(10,30);
+  display.print("to the Internet");
   display.display();
   delay(3000);
   
@@ -40,7 +40,7 @@ void connectToWifi() {
     display.clearDisplay(); 
     // display temperature
     display.setTextSize(1);
-    display.setCursor(40,30);
+    display.setCursor(30,30);
     display.print("WiFi CONNECTED");
     display.display();
     delay(3000);

@@ -1,17 +1,6 @@
 // Write the sensor readings on the SD card
 void logSDCard() {
 
- reading_time = getDS3231DateTime();
-
- if(WiFi.status() == WL_CONNECTED){
-      sendDataViaHTTPPost();
-      wifiStatus = 1;
-  }
-  else{
-    Serial.println("Failed to send data to server: Wifi Disconnected");
-    wifiStatus = 0;
-  }
-
  dataMessage = reading_time + 
                ";" + 
                location + 
