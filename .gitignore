@@ -1,6 +1,9 @@
 #.env files
 .env
 
+# Secret.h files
+Secret.h
+
 # Some especific directories
 arduino_files/
 sql/
