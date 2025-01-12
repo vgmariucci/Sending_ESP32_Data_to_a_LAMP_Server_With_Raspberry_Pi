@@ -1,4 +1,4 @@
-// ***************** DEFINES ********************
+//********************************* DEFINES *******************************
 
 #define SCREEN_WIDTH 128          // OLED display width, in pixels
 #define SCREEN_HEIGHT 64          // OLED display height, in pixels
@@ -13,7 +13,7 @@
 
 #define SD_CS 5                   // Define CS pin for the SD card module
 
-// **************** INCLUDES **********************
+//****************************** INCLUDES ********************************
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <WebServer.h>
@@ -28,17 +28,13 @@
 // Library to deal with time values
 #include "time.h"
 #include <WiFiUdp.h>
-#include <EEPROM.h>
-#include "DHT.h"
+#include <DHT.h>
 #include <DS3232RTC.h>      // https://github.com/JChristensen/DS3232RTC
 #include "Secrets.h"        // Hold Authorization Credentias that enables the ESP32 HTTP Post to the MySQL database hosted in a GCP Virtual Machine
 
-//**************** GLOBAL VARIABLES  *****************************
+//************************** GLOBAL VARIABLES  *****************************
 unsigned long PreviousMillis = 0;
-const long intervalo = 60000;
-
-// Replace with the URL path or Raspberry Pi IP address and the php script responsible to receive ESP32 data
-const char* serverName = "http://192.168.1.20/post_esp_data.php";
+const long intervalBetweenDataLogs = 60000; // Time interval for each SD Card datalog and HTTP POST to the Raspberry Pi LAMP server
 
 
 // Customer identification
