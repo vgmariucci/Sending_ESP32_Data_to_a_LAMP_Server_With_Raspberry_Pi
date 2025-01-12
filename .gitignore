@@ -2,7 +2,7 @@
 .env
 
 # Secret.h files
-Secret.h
+Secrets.h
 
 # Some especific directories
 arduino_files/
