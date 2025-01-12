@@ -1,5 +1,5 @@
 // Constants
-const unsigned long debounceDelay = 100; // Debounce delay in milliseconds
+const unsigned long debounceDelay = 200; // Debounce delay in milliseconds
 
 // Variables for debounce handling
 unsigned long lastDisplayBtnPressTime = 0;
@@ -14,11 +14,11 @@ void refreshKeyboardReadings() {
   if (!displayBtnStatus && millis() - lastDisplayBtnPressTime > debounceDelay) {
     lastDisplayBtnPressTime = millis(); // Update the last press time
 
-    oledState++;
+    oledState = !oledState;
     displayBtnCounter++;
     digitalWrite(led, 1);
 
-    if (oledState > 2) {
+    if (displayBtnCounter > 2) {
       oledState = 0;
       displayBtnCounter = 0;
       digitalWrite(led, 0);
