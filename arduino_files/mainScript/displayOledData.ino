@@ -13,6 +13,8 @@ void displayOledData() {
         display.setCursor(30, 20);
         display.print(temperature,1);
         display.setCursor(90, 20);
+        display.cp437(true);
+        display.write(167);
         display.print("C");
         display.display();
         break;
