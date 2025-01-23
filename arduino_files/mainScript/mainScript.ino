@@ -35,7 +35,7 @@
 
 //************************** GLOBAL VARIABLES  *****************************
 unsigned long previousMillisForOledReresh = 0;
-const long intervalBetweenOledRefresh = 5000; // Time interval for data refresh for OLED display and Serial Monitor
+const long intervalBetweenOledRefresh = 1*60000; // Time interval for data refresh for OLED display and Serial Monitor
 
 // Variables to store the readings from DHT22 sensor
 float temperature;
@@ -69,7 +69,7 @@ bool setDateTimeDS3231RTCUsingNTPClientFlag = 0;
 std::vector<String> dataBuffer;
 // Buffer to store multiple sensor readings before sending
 std::vector<String> httpDataBuffer;
-const size_t BUFFER_SIZE = 60; // Define the buffer size
+const size_t BUFFER_SIZE = 15; // Define the buffer size
 
 
 //***************** OBJECTS INSTANTIANTIONS *************
@@ -119,7 +119,7 @@ void loop() {
     }
   }
 
-  // Refresh the data presented in the OLED display in intervals of 5 seconds
+  // Refresh the data presented in the OLED display in intervals of 60 seconds
   if (!displayBtnCounter && (millis() - previousMillisForOledReresh >= intervalBetweenOledRefresh)) {
       
       previousMillisForOledReresh = millis();

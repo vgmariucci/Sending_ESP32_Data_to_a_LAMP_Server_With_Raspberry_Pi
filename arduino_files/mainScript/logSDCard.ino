@@ -29,7 +29,7 @@ void logSDCard() {
     // Add data to the buffer
     dataBuffer.push_back(dataMessage);
 
-    Serial.println("Data added to buffer:");
+    Serial.println("Data added to SD Card buffer:");
     Serial.println(dataMessage);
 
     // Check if the buffer is full

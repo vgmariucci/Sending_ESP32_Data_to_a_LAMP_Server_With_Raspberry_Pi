@@ -51,6 +51,7 @@ void bufferHttpData(){
                                 // Add data to the buffer
     httpDataBuffer.push_back(httpRequestData);
     Serial.println("Data added to HTTP buffer.");
+    Serial.println(httpRequestData);
 
     // Check if buffer is full
     if (httpDataBuffer.size() >= BUFFER_SIZE) {
