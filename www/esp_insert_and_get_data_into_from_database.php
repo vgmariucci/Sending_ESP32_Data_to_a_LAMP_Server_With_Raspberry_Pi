@@ -16,14 +16,15 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 $servername = "localhost";
-$dbname = $_ENV['RASP_DATABASE_NAME'];
 $username = $_ENV['RASP_DATABASE_USER_NAME'];
 $password = $_ENV['RASP_DATABASE_PASSWORD'];
-$table = $_ENV['RASP_DATABASE_TABLE_NAME'];
+$dbname = $_ENV['RASP_DATABASE_NAME_ESP32_AND_DHT22'];
+$table = $_ENV['TABLE_NAME_ESP32_AND_DHT22'];
 
   function insertReading(
             $reading_time,
-            $location,
+            $customer_ID,
+            $iot_device_serial_number,
             $temperature,
             $humidity,
             $wifi_status
@@ -39,10 +40,18 @@ $table = $_ENV['RASP_DATABASE_TABLE_NAME'];
                 die("Connection failed: " . $conn->connect_error);
               }
 
-              $sql = "INSERT INTO $table (reading_time, location, temperature, humidity, wifi_status)
+              $sql = "INSERT INTO $table(
+                  reading_time,
+                  customer_ID,
+                  iot_device_serial_number, 
+                  temperature, 
+                  humidity, 
+                  wifi_status
+                  )
               VALUES (
                   '" . $reading_time . "', 
-                  '" . $location . "', 
+                  '" . $customer_ID . "', 
+                  '" . $iot_device_serial_number . "', 
                   '" . $temperature . "', 
                   '" . $humidity . "', 
                   '" . $wifi_status . "'
@@ -57,6 +66,7 @@ $table = $_ENV['RASP_DATABASE_TABLE_NAME'];
     }
   
   function getAllReadings($limit) {
+    
     global $servername, $username, $password, $dbname, $table;
 
     // Create connection
@@ -66,7 +76,7 @@ $table = $_ENV['RASP_DATABASE_TABLE_NAME'];
       die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT id, reading_time, location, temperature, humidity, wifi_status FROM " . $table . " ORDER BY  reading_time DESC LIMIT " . $limit;
+    $sql = "SELECT id, reading_time, customer_ID, iot_device_serial_number, temperature, humidity, wifi_status FROM " . $table . " ORDER BY  reading_time DESC LIMIT " . $limit;
     if ($result = $conn->query($sql)) {
       return $result;
     }
@@ -85,7 +95,7 @@ $table = $_ENV['RASP_DATABASE_TABLE_NAME'];
       die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT id, reading_time, location, temperature, humidity, wifi_status FROM " . $table . " ORDER BY reading_time DESC LIMIT 1";
+    $sql = "SELECT id, reading_time, customer_ID, iot_device_serial_number, temperature, humidity, wifi_status FROM " . $table . " ORDER BY reading_time DESC LIMIT 1";
     if ($result = $conn->query($sql)) {
       return $result->fetch_assoc();
     }
