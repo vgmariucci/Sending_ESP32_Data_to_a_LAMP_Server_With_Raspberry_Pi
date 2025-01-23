@@ -104,7 +104,8 @@ void startSDCard(){
               // The set of paremeters to be registered into rows of data.txt file
               
               "timestamp;"                                               // The timestamp regarding the measured values 
-              "location;"                                                // The local name or reference place or idealy the customer's name or identificaion 
+              "customer_ID;"                          // The customer ID, idealy the customer's name or identificaion
+              "iot_device_serial_number;"             // The serial number of the ESP32 circuit connected with the IMS or other power meters
               "temperature;"                                             // The DHT22 temperature reading
               "humidity;"                                                // The DHT22 humidity reading
               "wifi_status\r\n"                                          // The WiFi status (connected 1 or disconnected 0)

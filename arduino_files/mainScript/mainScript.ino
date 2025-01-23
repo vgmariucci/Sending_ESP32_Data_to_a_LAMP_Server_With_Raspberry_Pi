@@ -31,21 +31,17 @@
 #include <DHT.h>
 #include <DS3232RTC.h>      // https://github.com/JChristensen/DS3232RTC
 #include "Secrets.h"        // Hold Authorization Credentias that enables the ESP32 HTTP Post to the MySQL database hosted in a GCP Virtual Machine
+#include <vector> // Include vector for dynamic buffer
 
 //************************** GLOBAL VARIABLES  *****************************
-unsigned long previousMillisForDataLogs = 0;
 unsigned long previousMillisForOledReresh = 0;
-const long intervalBetweenDataLogs = 60000;   // Time interval for each SD Card datalog and HTTP POST to the Raspberry Pi LAMP server
 const long intervalBetweenOledRefresh = 5000; // Time interval for data refresh for OLED display and Serial Monitor
-
-
-// Customer identification
-String location = "Customer_ID";
 
 // Variables to store the readings from DHT22 sensor
 float temperature;
 float humidity;
 
+bool status_LED = 0;   // Varaible to store the LED status
 uint8_t oledState = 0;  // Variable do store the Oled counter
 
 uint8_t displayBtnCounter = 0;   // Variable to store how many times the display button was pressed
@@ -68,6 +64,13 @@ const long  gmtOffset_sec = -3*3600;
 const int   daylightOffset_sec = 3600;
 
 bool setDateTimeDS3231RTCUsingNTPClientFlag = 0;
+
+// Global buffer to store sensor readings
+std::vector<String> dataBuffer;
+// Buffer to store multiple sensor readings before sending
+std::vector<String> httpDataBuffer;
+const size_t BUFFER_SIZE = 60; // Define the buffer size
+
 
 //***************** OBJECTS INSTANTIANTIONS *************
 
@@ -115,28 +118,25 @@ void loop() {
         setDateTimeDS3231RTCUsingNTPClientFlag = 1;              // Set the flag !setDateTimeDS3231RTCUsingNTPClientFlag to prevent enter in sync mode again.
     }
   }
-  // Check if it is time to log the data into the SD Card and if connected to the Internet, send the data to the LAMP server via HTTP POST request
-  if (millis() - previousMillisForDataLogs >= intervalBetweenDataLogs) {
-    
-    previousMillisForDataLogs = millis();
 
-    reading_time = getDS3231DateTime();
-    logSDCard();
-
-    if(WiFi.status() == WL_CONNECTED){
-      sendDataViaHTTPPost();
-      wifiStatus = 1;
-    }
-    else{
-    Serial.println("Failed to send data to server: Wifi Disconnected");
-    wifiStatus = 0;
-    }
-
-  }
   // Refresh the data presented in the OLED display in intervals of 5 seconds
   if (!displayBtnCounter && (millis() - previousMillisForOledReresh >= intervalBetweenOledRefresh)) {
+      
       previousMillisForOledReresh = millis();
+      
       readTemperatureAndHumidityFromDHT22();
+      reading_time = getDS3231DateTime();
+      
+      logSDCard();
+
+      if(WiFi.status() == WL_CONNECTED){
+          bufferHttpData();
+          wifiStatus = 1;
+        }
+      else{
+          Serial.println("Failed to send data to server: Wifi Disconnected");
+          wifiStatus = 0;
+        }
       oledState++;
       if(oledState > 2) oledState = 0;
   }

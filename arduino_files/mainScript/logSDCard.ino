@@ -1,9 +1,23 @@
+// Flush the buffer contents to the SD card
+void flushBufferToSD() {
+    Serial.println("Flushing buffer to SD card...");
+    for (const String &dataMessage : dataBuffer) {
+        appendFile(SD, "/data.txt", dataMessage.c_str());
+    }
+
+    // Clear the buffer after writing to the SD card
+    dataBuffer.clear();
+    Serial.println("Buffer flushed and cleared.");
+}
+
 // Write the sensor readings on the SD card
 void logSDCard() {
 
  dataMessage = reading_time + 
                ";" + 
-               location + 
+               customer_ID + 
+               ";" + 
+               iot_device_serial_number + 
                ";" + 
                String(temperature) + 
                ";" + 
@@ -12,16 +26,18 @@ void logSDCard() {
                String(wifiStatus) +
                "\r\n";
  
+    // Add data to the buffer
+    dataBuffer.push_back(dataMessage);
 
-  appendFile(SD, "/data.txt", dataMessage.c_str());
+    Serial.println("Data added to buffer:");
+    Serial.println(dataMessage);
 
+    // Check if the buffer is full
+    if (dataBuffer.size() >= BUFFER_SIZE) {
+        flushBufferToSD();
+    }
 
-  Serial.println("Saving into the SD Card the following data: ");
-  Serial.println(dataMessage);
-
-  
 }
-
 
 // Write to the SD card (DON'T MODIFY THIS FUNCTION)
 void writeFile(fs::FS &fs, const char * path, const char * message) {

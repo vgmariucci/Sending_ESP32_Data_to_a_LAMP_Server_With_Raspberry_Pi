@@ -1,38 +1,60 @@
-void sendDataViaHTTPPost(){
-    Serial.println("Post data to the Rasp...");
+// Function to send all buffered data via HTTP POST
+void sendBufferedData() {
+    Serial.println("Sending buffered data to Cloud...");
+
     WiFiClient client;
     HTTPClient http;
-    
-    // Your Domain name with URL path or IP address with path
-    http.begin(client, serverName);
-    
-    // Set Basic Authentication header
-    // http.setAuthorization(RASP_USER_NAME, RASP_PASSWORD);
 
-    // Specify content-type header
+    http.begin(client, serverName);
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-    
-    // Prepare your HTTP POST request data
-    String httpRequestData = "api_key=" + API_KEY + 
-                             "&reading_time=" + reading_time + 
-                             "&location=" + location + 
-                             "&temperature=" + String(temperature) + 
-                             "&humidity=" + String(humidity) +
-                             "&wifi_status=" + String(wifiStatus) + "";
-    Serial.print("httpRequestData: ");
-    Serial.println(httpRequestData);
-    
-    // Send HTTP POST request
-    int httpResponseCode = http.POST(httpRequestData);
-               
-    if (httpResponseCode>0) {
-      Serial.print("HTTP Response code: ");
-      Serial.println(httpResponseCode);
+
+    bool allSent = true; 
+
+    for (size_t i = 0; i < httpDataBuffer.size(); i++) {
+        Serial.print("Sending buffered request: ");
+        Serial.println(httpDataBuffer[i]);
+
+        int httpResponseCode = http.POST(httpDataBuffer[i]);
+
+        if (httpResponseCode > 0) {
+            Serial.print("HTTP Response code: ");
+            Serial.println(httpResponseCode);
+        } else {
+            Serial.print("HTTP request failed. Error code: ");
+            Serial.println(httpResponseCode);
+            allSent = false; // Mark as not fully sent
+            break; // Exit loop to retry later
+        }
     }
-    else {
-      Serial.print("Error code: ");
-      Serial.println(httpResponseCode);
+
+    http.end(); // Close the connection
+
+    if (allSent) {
+        httpDataBuffer.clear(); // Clear buffer only if all requests succeeded
+        Serial.println("All buffered data successfully sent!");
+    } else {
+        Serial.println("Some requests failed. Keeping data in buffer.");
     }
-    // Free resources
-    http.end();
+}
+
+// Function to add data to the buffer
+void bufferHttpData(){
+  // Create the HTTP request data string
+  String httpRequestData = "api_key=" + API_KEY + 
+                            "&reading_time=" + reading_time + 
+                            "&customer_ID=" + customer_ID + 
+                            "&iot_device_serial_number=" + iot_device_serial_number + 
+                            "&temperature=" + String(temperature) + 
+                            "&humidity=" + String(humidity) +
+                            "&wifi_status=" + String(wifiStatus);
+
+                                // Add data to the buffer
+    httpDataBuffer.push_back(httpRequestData);
+    Serial.println("Data added to HTTP buffer.");
+
+    // Check if buffer is full
+    if (httpDataBuffer.size() >= BUFFER_SIZE) {
+        sendBufferedData();
+    }
+
 }

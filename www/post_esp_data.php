@@ -20,11 +20,12 @@ require 'vendor/autoload.php'; // Load Composer dependencies
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$api_key_value = $_ENV['RASP_API_KEY'];
+$api_key_value = $_ENV['RASP_API_KEY_ESP32_AND_DHT22'];
 
 $api_key = "";
 $reading_time = "";
-$location = "";
+$customer_ID = "";
+$iot_device_serial_number = "";
 $temperature = "";
 $humidity = "";
 $wifi_status = "";
@@ -37,14 +38,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if($api_key == $api_key_value) {
         $reading_time = test_input($_POST["reading_time"]);
-        $location = test_input($_POST["location"]);
+        $customer_ID = test_input($_POST["customer_ID"]);
+        $iot_device_serial_number = test_input($_POST["iot_device_serial_number"]);
         $temperature = test_input($_POST["temperature"]);
         $humidity = test_input($_POST["humidity"]);
         $wifi_status = test_input($_POST["wifi_status"]);
         
         $result = insertReading(
             $reading_time,
-            $location,
+            $customer_ID,
+            $iot_device_serial_number,
             $temperature,
             $humidity,
             $wifi_status
