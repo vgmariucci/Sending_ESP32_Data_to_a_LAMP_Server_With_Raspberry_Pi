@@ -2,7 +2,7 @@
 
 #define SCREEN_WIDTH 128          // OLED display width, in pixels
 #define SCREEN_HEIGHT 64          // OLED display height, in pixels
-#define OLED_SD1306_ADDRESS 0x3C  //OLED I2C Address
+#define OLED_SD1306_ADDRESS 0x3C  // OLED I2C Address
 
 #define DHTPIN 4                  // Digital pin where data will be received from DHT22
 #define DHTTYPE DHT22             // DHT22 (AM2302) temperature and relative himidity sensor.
@@ -30,7 +30,7 @@
 #include <WiFiUdp.h>
 #include <DHT.h>
 #include <DS3232RTC.h>      // https://github.com/JChristensen/DS3232RTC
-#include "Secrets.h"        // Hold Authorization Credentias that enables the ESP32 HTTP Post to the MySQL database hosted in a GCP Virtual Machine
+#include "Secrets.h"        // Hold Authorization Credentials
 #include <vector> // Include vector for dynamic buffer
 
 //************************** GLOBAL VARIABLES  *****************************
